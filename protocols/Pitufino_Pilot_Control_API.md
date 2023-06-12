@@ -1,6 +1,6 @@
 # Pitufino's unified Autopilot Control API
 
-An autopilot can be controlled by an app by sending **HTTP POST** requests to Pitufino's HTTP server. The request needs to contain a single name-value pair as in submitting an HTML form using either the content type application/x-www-form-urlencoded or multipart/form-data. The name of the required field is "pilot" and possible values are: "-10", "+10", "-1", "+1", "stby", "auto", "wind", "nav".
+An autopilot can be controlled by an app by sending **HTTP POST** requests to Pitufino's HTTP server (URL path **/cmd**). The request needs to contain a single name-value pair as in submitting an HTML form using either the content type application/x-www-form-urlencoded or multipart/form-data. The name of the required field is "pilot" and possible values are: "-10", "+10", "-1", "+1", "stby", "auto", "wind", "nav".
 
     pilot = -10 | +10 | -1 | +1 | stby | auto | wind | nav
 
