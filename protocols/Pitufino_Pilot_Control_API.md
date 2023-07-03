@@ -1,10 +1,12 @@
 # Pitufino's unified Autopilot Control API
 
-An autopilot can be controlled by an app by sending **HTTP POST** requests to Pitufino's HTTP server (URL path **/cmd**). The request needs to contain a single name-value pair as in submitting an HTML form using either the content type application/x-www-form-urlencoded or multipart/form-data. The name of the required field is "pilot" and possible values are: "-10", "+10", "-1", "+1", "stby", "auto", "wind", "nav".
+An autopilot can be controlled by an app by sending **HTTP POST** requests to Pitufino's HTTP server (URL path **/cmd**). The request needs to contain a single name-value pair as in submitting an HTML form using either the content type application/x-www-form-urlencoded or multipart/form-data. The name of the required field is "pilot" and possible values are: "stby", "auto", "wind", "nav", "-10", "+10", "-1", "+1", "conf_wp" and "decl_wp".
 
-    pilot = -10 | +10 | -1 | +1 | stby | auto | wind | nav
+    pilot = stby | auto | wind | nav | -10 | +10 | -1 | +1 | conf_wp | decl_wp
 
-The HTTP client needs to be capable to perform **digest access authentication** as the user may not allow unauthenticated access. Any libcurl-based client should be able to do so.
+The first 4 values are for switching the pilot mode to "stby" (standby), "auto" (compass mode, use a locked heading), "wind" (vane mode, use a locked wind angle), or "nav" (waypoint or track mode, steer towards the active waypoint, usually cross-track error XTE is used). The next 4 values (-10, +10, -1, +1) are used for course adjustments when in "auto" or "wind" mode. "conf_wp" and "decl_wp" are used to confirm or decline a new waypoint in "nav" mode.
+
+The HTTP client needs to be capable to perform **digest access authentication** as the user may not allow unauthenticated access. Any libcurl or ApacheHttpClient-based implementation should be able to do so.
 
 ## Examples using curl on the command line
 
